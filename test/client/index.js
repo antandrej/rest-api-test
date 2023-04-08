@@ -1,14 +1,11 @@
 const client = require('./connection.js')
 const express = require('express');
-const app = express();
 const bodyParser = require("body-parser");
+const app = express();
 app.use(bodyParser.json());
 
 app.use(express.json());
 
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-});
 
 
 app.get('/api/users', (req, res) => {
