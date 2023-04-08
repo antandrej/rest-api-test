@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,11 +9,19 @@ export class UserServiceService {
 
   constructor(private http : HttpClient) { }
 
-  getUsers(){
+  deleteId: number | undefined;
+
+  getUsers() : Observable<any>{
     return this.http.get('/api/users');
   }
 
-  getHelloWorld(){
-    return this.http.get('/api');
+  getUser() : Observable<any>{
+    return this.http.get('/api/users/:id');
   }
+
+
+  deleteUser() : Observable<any>{
+    return this.http.delete('/api/users/' + this.deleteId);
+  }
+
 }

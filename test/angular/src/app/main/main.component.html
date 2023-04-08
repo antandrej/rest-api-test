@@ -1,0 +1,8 @@
+<div class="user" *ngFor="let x of users">
+    <p>{{ x.id }}</p>
+    <p>{{ x.firstname }}</p>
+    <p>{{ x.lastname }}</p>
+    <p>{{ x.location }}</p>
+    <button>OPEN</button>
+    <button (click)="deleteUser(x.id)">DELETE</button>
+</div>

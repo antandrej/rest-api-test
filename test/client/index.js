@@ -9,7 +9,7 @@ app.use(express.json());
 
 
 app.get('/api/users', (req, res) => {
-    client.query('SELECT * FROM users', (err, result) =>{
+    client.query('SELECT * FROM users ORDER BY id', (err, result) =>{
         if(!err){
             res.send(result.rows);
         }
