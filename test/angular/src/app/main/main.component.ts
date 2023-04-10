@@ -9,25 +9,20 @@ import { HttpClient } from '@angular/common/http';
 })
 export class MainComponent {
 
-  users: any;
+  users: any[] = [];
   user: any;
-  deleteId = this.service.deleteId;
 
   constructor(private service: UserServiceService, private http : HttpClient) { }
 
   ngOnInit(): void {
     this.getUsers();
   }
-
   getUsers() {
-    this.service.getUsers().subscribe(data => {
-      console.log(data);
-      this.users = data;
-    },
-      error => {
-        console.log(error);
-      }
-    )
+      this.http.get('/api/users').subscribe(data => {
+      this.users = data as any[];
+    }, (error: any) => {
+      console.log(error);
+    });
   }
 /*
   getUser(id: any) {
@@ -53,9 +48,11 @@ export class MainComponent {
     */
 
     deleteUser(id: any){
-      this.http.delete('/api/users/' + id).subscribe((data) => {
+      this.http.delete('/api/users/' + id, {responseType: 'text'}).subscribe((data) => {
         this.ngOnInit();
-        console.log(id);
-      });
+      },error => {
+        console.log(error);
+      }
+      );
     }
 }

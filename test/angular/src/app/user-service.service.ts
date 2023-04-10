@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 export class UserServiceService {
 
   constructor(private http : HttpClient) { }
-
+/*
   deleteId: number | undefined;
 
   getUsers() : Observable<any>{
@@ -23,5 +23,5 @@ export class UserServiceService {
   deleteUser() : Observable<any>{
     return this.http.delete('/api/users/' + this.deleteId);
   }
-
+*/
 }
