@@ -28,7 +28,7 @@ app.get('/api/users/:id', (req, res) => {
 
 app.post('/api/users', (req, res) => {
     const user = req.body;
-    let insertQuery = `INSERT INTO users(id, firstname, lastname, location) VALUES(${user.id}, '${user.firstname}', '${user.lastname}', '${user.location}')`;
+    let insertQuery = `INSERT INTO users(firstname, lastname, location) VALUES('${user.firstname}', '${user.lastname}', '${user.location}')`;
 
     client.query(insertQuery, (err, result) =>{
         if(!err){

@@ -1,8 +1,45 @@
-<div class="user" *ngFor="let x of users">
-    <p>{{ x.id }}</p>
-    <p>{{ x.firstname }}</p>
-    <p>{{ x.lastname }}</p>
-    <p>{{ x.location }}</p>
-    <button>OPEN</button>
-    <button (click)="deleteUser(x.id)">DELETE</button>
+<div>
+    <div class="user" *ngFor="let x of users">
+        <p>{{ x.id }}</p>
+        <p>{{ x.firstname }}</p>
+        <p>{{ x.lastname }}</p>
+        <p>{{ x.location }}</p>
+        <button (click)="getUser(x.id)">OPEN</button>
+        <button (click)="deleteUser(x.id)">DELETE</button>
+    </div>
+</div>
+<div style="display: flex; justify-content: center;margin-bottom: 235px;"><button (click)="openForm(false)">ADD NEW USER</button></div>
+<div id="details-form">
+    <form>
+        <div class="form-group" style="display: none;">
+            <label for="id">id</label>
+            <div class="input-group">
+                <input id="id" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="firstname">Firstname</label>
+            <div class="input-group">
+                <input id="fname" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="lastname">Lastname</label>
+            <div class="input-group">
+                <input id="lname" class="form-control">
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="location">Location</label>
+            <div class="input-group">
+                <input id="loc" class="form-control">
+            </div>
+        </div>
+    </form>
+    <br>
+    <div style="display: flex;">
+        <button id="switch" (click)="updateUser()" style="margin-right: 50px;" *ngIf="toUpdate; else elseBlock">update</button>
+        <ng-template #elseBlock><button id="switch" (click)="addUser()" style="margin-right: 50px;">add user</button></ng-template>
+        <button (click)="closeBox()">close</button>
+    </div>
 </div>
