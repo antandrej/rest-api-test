@@ -17,6 +17,7 @@ export class MainComponent implements OnInit {
   users: any[] = [];
 
   user: any;
+  //newUser : any;
   subscription!: Subscription;
 
   toUpdate: boolean = false;
@@ -91,7 +92,7 @@ export class MainComponent implements OnInit {
       lastname: form.value.lastname,
       location: form.value.location
     };
-    this.http.post('/api/users/', newUser, { responseType: 'text' }).subscribe((data) => {
+    this.service.addUser(newUser).subscribe((data) => {
       console.log(data);
       this.clearFields(this.myForm);
       this.ngOnInit();

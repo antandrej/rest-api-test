@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class UserComponent implements OnInit{
 
-  user: any;
+  user: any[] = [];
   id: any;
   //subscription!: Subscription;
 
