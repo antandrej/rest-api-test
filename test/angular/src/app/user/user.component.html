@@ -1,9 +1,10 @@
-<div class="user">
+<div class="user" *ngIf="user[0]; else noUser">
     <p>{{ user[0].id }}</p>
     <p>{{ user[0].firstname }}</p>
     <p>{{ user[0].lastname }}</p>
     <p>{{ user[0].location }}</p>
 </div>
+<ng-template #noUser><p>No user with this id !</p></ng-template>
 <div>
     <button routerLink="/main">BACK</button>
 </div>

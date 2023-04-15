@@ -7,28 +7,27 @@ import { Observable, BehaviorSubject } from 'rxjs';
 })
 export class UserServiceService {
 
-  constructor(private http : HttpClient) { }
+  constructor(private http: HttpClient) { }
 
-  deleteId: number | undefined;
 
-  user: any;
+  //user: any;
 
-  private userSource = new BehaviorSubject({});
-  currentUser = this.userSource;
+  //private userSource = new BehaviorSubject({});
+  //currentUser = this.userSource;
 
-  getUsers() : Observable<any>{
+  getUsers(): Observable<any> {
     return this.http.get('/api/users');
   }
 
-  getUser(id: any) : Observable<any>{
+  getUser(id: any): Observable<any> {
     return this.http.get('/api/users/' + id, { responseType: 'json' });
   }
 
-  deleteUser() : Observable<any>{
-    return this.http.delete('/api/users/' + this.deleteId);
+  deleteUser(id: any): Observable<any> {
+    return this.http.delete('/api/users/' + id, { responseType: 'text' });
   }
 
-  showUser(user: any){
-    this.currentUser.next(user);
-  }
+  //showUser(user: any){
+  //this.currentUser.next(user);
+  //}
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+//import { Subscription } from 'rxjs';
 import { UserServiceService } from '../services/user-service.service';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-user',
@@ -10,13 +12,24 @@ import { UserServiceService } from '../services/user-service.service';
 export class UserComponent implements OnInit{
 
   user: any;
-  subscription!: Subscription;
+  id: any;
+  //subscription!: Subscription;
 
-  constructor(private dataService: UserServiceService) { }
+  constructor(private dataService: UserServiceService, private route: ActivatedRoute) { }
+
 
   ngOnInit(): void {
-    this.subscription = this.dataService.currentUser.subscribe(data => this.user = data);
-    console.log(this.user);
+    //this.subscription = this.dataService.currentUser.subscribe(data => this.user = data);
+    //console.log(this.user);
+    
+    this.getUser();
+  }
+
+  getUser(){
+    this.id = this.route.snapshot.paramMap.get('id');
+    this.dataService.getUser(this.id).subscribe(data => this.user = data, (error: any) => {
+      console.log(error);
+    });
   }
 
 }

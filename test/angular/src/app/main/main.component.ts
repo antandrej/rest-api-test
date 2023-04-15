@@ -32,7 +32,7 @@ export class MainComponent implements OnInit {
       lastname: ['', Validators.required],
       location: ['', Validators.required]
     });
-    this.subscription = this.service.currentUser.subscribe(data => this.user = data)
+    //this.subscription = this.service.currentUser.subscribe(data => this.user = data)
   }
 
   getUsers() {
@@ -45,26 +45,28 @@ export class MainComponent implements OnInit {
   }
 
   getUser(id: any) {
+    this.router.navigate(['user/', id]);
+    /*
     this.service.getUser(id).subscribe(data => {
-      this.user = data;
-      this.service.showUser(this.user);
-      this.router.navigate(['user']);
+      //this.user = data;
+      //this.service.showUser(this.user);
+      //this.router.navigate(['user/', id]);
     },
       error => {
         console.log(error);
       }
-    )
+    )*/
   }
 
   deleteUser(id: any) {
-    this.http.delete('/api/users/' + id, { responseType: 'text' }).subscribe((data) => {
+    this.service.deleteUser(id).subscribe((data) => {
       this.ngOnInit();
     }, error => {
       console.log(error);
     }
     );
   }
-
+/*
   updateUser(form: FormGroup) {
     let id = form.value.id;
     const updatedUser = {
@@ -82,7 +84,7 @@ export class MainComponent implements OnInit {
     }
     );
   }
-
+*/
   addUser(form: FormGroup) {
     const newUser = {
       firstname: form.value.firstname,
@@ -104,7 +106,7 @@ export class MainComponent implements OnInit {
       this.clearFields(this.myForm);
   }
 
-  closeBox() {
+  closeForm() {
     document.getElementById("details-form")!.style.display = "none";
     this.clearFields(this.myForm);
   }
