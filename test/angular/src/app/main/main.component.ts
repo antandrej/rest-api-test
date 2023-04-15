@@ -99,16 +99,9 @@ export class MainComponent implements OnInit {
     );
   }
 
-  openForm(updating: boolean) {
+  openForm() {
     document.getElementById("details-form")!.style.display = "flex";
-    console.log(updating);
-    if (updating) {
-      this.toUpdate = true;
-    }
-    else if (!updating) {
-      this.toUpdate = false;
       this.clearFields(this.myForm);
-    }
   }
 
   closeBox() {
