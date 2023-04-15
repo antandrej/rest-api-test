@@ -1,9 +1,10 @@
-.user{
-    width: 100%;
+.users{
+    width: 80%;
     display: flex;
     justify-content: space-evenly;
+    margin: 0 auto;
 }
-.user:last-of-type{
+.users:last-of-type{
     margin-bottom: 70px;
 }
 #details-form{

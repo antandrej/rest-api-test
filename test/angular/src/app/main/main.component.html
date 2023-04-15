@@ -1,45 +1,42 @@
 <div>
-    <div class="user" *ngFor="let x of users">
-        <p>{{ x.id }}</p>
-        <p>{{ x.firstname }}</p>
-        <p>{{ x.lastname }}</p>
-        <p>{{ x.location }}</p>
+    <div class="users" *ngFor="let x of users">
+        <p style="width: 100px;">{{ x.firstname }}</p>
         <button (click)="getUser(x.id)">OPEN</button>
         <button (click)="deleteUser(x.id)">DELETE</button>
     </div>
 </div>
 <div style="display: flex; justify-content: center;margin-bottom: 235px;"><button (click)="openForm(false)">ADD NEW USER</button></div>
 <div id="details-form">
-    <form>
+    <form [formGroup]="myForm">
         <div class="form-group" style="display: none;">
             <label for="id">id</label>
             <div class="input-group">
-                <input id="id" class="form-control">
+                <input id="id" class="form-control" formControlName="id">
             </div>
         </div>
         <div class="form-group">
             <label for="firstname">Firstname</label>
             <div class="input-group">
-                <input id="fname" class="form-control">
+                <input id="fname" class="form-control" formControlName="firstname">
             </div>
         </div>
         <div class="form-group">
             <label for="lastname">Lastname</label>
             <div class="input-group">
-                <input id="lname" class="form-control">
+                <input id="lname" class="form-control" formControlName="lastname">
             </div>
         </div>
         <div class="form-group">
             <label for="location">Location</label>
             <div class="input-group">
-                <input id="loc" class="form-control">
+                <input id="location" class="form-control" formControlName="location">
             </div>
         </div>
     </form>
     <br>
     <div style="display: flex;">
-        <button id="switch" (click)="updateUser()" style="margin-right: 50px;" *ngIf="toUpdate; else elseBlock">update</button>
-        <ng-template #elseBlock><button id="switch" (click)="addUser()" style="margin-right: 50px;">add user</button></ng-template>
+        <button id="switch" (click)="updateUser(myForm)" style="margin-right: 50px;" [disabled]="myForm.invalid" *ngIf="toUpdate; else elseBlock">update</button>
+        <ng-template #elseBlock><button id="switch" (click)="addUser(myForm)" style="margin-right: 50px;" [disabled]="myForm.invalid">add user</button></ng-template>
         <button (click)="closeBox()">close</button>
     </div>
 </div>
